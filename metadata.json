@@ -1,0 +1,6 @@
+{
+  "name": "Japan Tours",
+  "description": "An elegant and interactive landing page for curated Japanese tour itineraries, including modular schedules, dynamic flight routes, and a request submission portal.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
