@@ -126,12 +126,12 @@ export default function Hero({ language, onExploreClick, onCardClick, onBookClic
         <div className="flex flex-col lg:flex-row items-stretch justify-between gap-6">
           
           {/* Scrolling horizontal deck matching the photo exactly */}
-          <div className="flex-grow grid grid-cols-2 sm:grid-cols-5 gap-3">
+          <div className="flex-grow flex gap-3 overflow-x-auto pb-4 scrollbar-none snap-x snap-mandatory sm:grid sm:grid-cols-5 sm:overflow-x-visible sm:pb-0">
             {HERO_CARDS.map((card) => (
               <button
                 key={card.id}
                 onClick={() => onCardClick(card)}
-                className="group relative flex flex-col justify-between p-4 h-40 md:h-48 rounded-xl overflow-hidden border border-white/15 bg-neutral-950/40 backdrop-blur-md text-left transition-all duration-300 hover:border-amber-500/50 hover:shadow-[0_0_20px_rgba(245,158,11,0.15)] focus:outline-none cursor-pointer"
+                className="group relative flex flex-col justify-between p-4 h-40 md:h-48 rounded-xl overflow-hidden border border-white/15 bg-neutral-950/40 backdrop-blur-md text-left transition-all duration-300 hover:border-amber-500/50 hover:shadow-[0_0_20px_rgba(245,158,11,0.15)] focus:outline-none cursor-pointer flex-shrink-0 w-[140px] sm:w-auto snap-align-start"
               >
                 {/* Background image inside card */}
                 <div className="absolute inset-0 z-0 opacity-40 group-hover:opacity-65 transition-opacity duration-300">

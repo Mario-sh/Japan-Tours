@@ -71,7 +71,7 @@ export default function AboutTour({ language }: AboutTourProps) {
           <div className="lg:col-span-7 col-span-1 flex flex-col md:flex-row gap-8 items-start">
             
             {/* Elegant Vertical Timeline */}
-            <div className="relative pl-10 border-l-2 border-white/10 space-y-16 w-full md:w-3/5">
+            <div className="relative pl-10 ml-4 md:ml-0 border-l-2 border-white/10 space-y-16 w-full md:w-3/5">
               {ITINERARY.map((step, index) => {
                 const isActive = activeSegment === index;
                 return (
@@ -131,13 +131,52 @@ export default function AboutTour({ language }: AboutTourProps) {
                         </div>
                       ))}
                     </div>
+
+                    {/* Inline mobile card for instant responsive feedback */}
+                    {isActive && (
+                      <div className="mt-4 md:hidden block bg-white/5 border border-amber-500/30 rounded-2xl p-5 space-y-4 animate-fade-in text-left">
+                        <div className="h-32 rounded-xl overflow-hidden border border-white/10">
+                          <img
+                            src={step.images[0]}
+                            alt={step.city}
+                            referrerPolicy="no-referrer"
+                            onError={(e) => {
+                              e.currentTarget.onerror = null;
+                              e.currentTarget.src = "https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&q=80&w=600";
+                            }}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <p className="font-sans text-white/80 text-xs leading-relaxed">
+                          {step.description}
+                        </p>
+                        <div className="space-y-2">
+                          <span className="text-[10px] font-bold text-amber-400 uppercase tracking-widest block">
+                            {language === 'fr' ? 'À ne pas manquer' : 'Top Attractions'}
+                          </span>
+                          <ul className="list-disc pl-4 text-white/70 text-xs space-y-1">
+                            {step.attractions.map((att) => (
+                              <li key={att}>{att}</li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div className="pt-2 border-t border-white/10 space-y-1">
+                          <span className="text-[10px] font-bold text-orange-400 uppercase tracking-widest block">
+                            {language === 'fr' ? 'Cuisine phare' : 'Gourmet Note'}
+                          </span>
+                          <p className="font-sans text-white/70 italic text-xs pl-1">
+                            {step.mustEat}
+                          </p>
+                        </div>
+                      </div>
+                    )}
                   </button>
                 );
               })}
             </div>
 
-            {/* Interactive Day Details Drawer panel */}
-            <div className="w-full md:w-2/5 md:sticky md:top-24 bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-md shadow-xl space-y-6">
+            {/* Interactive Day Details Drawer panel - desktop only */}
+            <div className="hidden md:block w-full md:w-2/5 md:sticky md:top-24 bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-md shadow-xl space-y-6">
               <div>
                 <span className="inline-block px-3 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-500 rounded-full font-mono text-[10px] uppercase tracking-widest font-bold">
                   {ITINERARY[activeSegment].dayRange}
